@@ -20,7 +20,7 @@ def wordcloudplot(txt):
     '''
     词云背景图
     '''
-    alice_mask = np.array(PIL.Image.open('E:\\PythonDataAnalysis\\WordCloud\\nwpu.jpg'))
+    alice_mask = np.array(PIL.Image.open('E:\\PythonDataAnalysis\\wordCloud\\nwpu.jpg'))
     wordcloud = WordCloud(font_path=path,
                           background_color="white",
                           margin=5,width=1800,height=800,
@@ -31,7 +31,7 @@ def wordcloudplot(txt):
     '''
     所生成的词云图片
     '''
-    wordcloud.to_file('E:\\PythonDataAnalysis\\WordCloud\\nwpu_wordcloud.jpg')
+    wordcloud.to_file('E:\\PythonDataAnalysis\\wordCloud\\nwpu_wordcloud.jpg')
     plt.imshow(wordcloud)
     plt.axis("off")
     plt.show()
@@ -56,8 +56,8 @@ def main():
                  其中，txt文件的路径就是tempFilePath   
     '''
     a = []
-    Path = "E:\\PythonDataAnalysis\\WordCloud\\report.pdf"
-    tempFilePath = 'E:\\PythonDataAnalysis\\WordCloud\\report.txt'
+    Path = "E:\\PythonDataAnalysis\\wordCloud\\report.pdf"
+    tempFilePath = 'E:\\PythonDataAnalysis\\wordCloud\\report.txt'
     f = open(tempFilePath,'a+',encoding='utf-8')
     f.seek(0)
     with pdfplumber.open(Path) as pdf:

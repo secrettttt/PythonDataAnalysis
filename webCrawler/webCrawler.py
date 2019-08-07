@@ -27,7 +27,7 @@ class anjuke_second_hand_house():
             self.mainfunction(Originpage)
             print(f"All second-hand houses in[{self.District}]has been saved in database!")
         elif self.District=='东城':
-            Originpage = 'https://beijing.anjuke.com/sale/'+'dongcheng'+'/'
+            Originpage = 'https://beijing.anjuke.com/sale/'+'dongchenga'+'/'
             self.mainfunction(Originpage)
             print(f"All second-hand houses in[{self.District}]has been saved in database!")
         elif self.District=='西城':
@@ -75,7 +75,7 @@ class anjuke_second_hand_house():
             self.mainfunction(Originpage)
             print(f"All second-hand houses in[{self.District}]has been saved in database!")
         elif self.District=='平谷':
-            Originpage = 'https://beijing.anjuke.com/sale/'+'pinggu'+'/'
+            Originpage = 'https://beijing.anjuke.com/sale/'+'pinggua'+'/'
             self.mainfunction(Originpage)
             print(f"All second-hand houses in[{self.District}]has been saved in database!")
         elif self.District=='延庆':
@@ -83,7 +83,7 @@ class anjuke_second_hand_house():
             self.mainfunction(Originpage)
             print(f"All second-hand houses in[{self.District}]has been saved in database!")
         elif self.District=='北京周边':
-            Originpage = 'https://beijing.anjuke.com/sale/'+'beijingzhoubian'+'/'
+            Originpage = 'https://beijing.anjuke.com/sale/'+'beijingzhoubiana'+'/'
             self.mainfunction(Originpage)
             print(f"All second-hand houses in[{self.District}]has been saved in database!")
 

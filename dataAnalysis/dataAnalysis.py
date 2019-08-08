@@ -194,31 +194,6 @@ def main():
     for i in max_fangwudanjia_sorted:
         print(i+": "+str(max_fangwudanjia_sorted[i])+"元/平方米"+"     "+str(min_fangwudanjia_sorted[i])+"元/平方米")   
     
-    print("———————————————————————海淀区二手房信息——————————————————————————")
-    print("房屋户型     数量")
-    print(haidian['房屋户型'].value_counts())
-    
-    print(' ')
-    print("建造年代     数量")
-    print(haidian['建造年代'].value_counts())
-    
-    print(' ')
-    print("房屋朝向    数量")
-    print(haidian['房屋朝向'].value_counts())
-    
-    print(' ')
-    print("房屋类型    数量")
-    print(haidian['房屋类型'].value_counts())
-    
-    print(' ')
-    print("装修程度    数量")
-    print(haidian['装修程度'].value_counts())
-    
-    print(' ')
-    print("产权性质      数量")
-    print(haidian['产权性质'].value_counts())
-
-    
     print("——————————————————北京市在卖二手房配套电梯、配套供暖——————————————————————————") 
     print(' ')
     print("配套电梯    数量")
@@ -243,6 +218,39 @@ def main():
           shijingshan['配套供暖'].value_counts()+shunyi['配套供暖'].value_counts()+
           tongzhou['配套供暖'].value_counts()+xicheng['配套供暖'].value_counts()+
           yanqing['配套供暖'].value_counts())
+    
+    
+    print("———————————————————————海淀区二手房信息——————————————————————————")
+    print("房屋户型     数量")
+    print(haidian['房屋户型'].value_counts())
+    
+    print(' ')
+    print("建造年代     数量")
+    print(haidian['建造年代'].value_counts())
+    
+    print(' ')
+    print("房屋朝向    数量")
+    print(haidian['房屋朝向'].value_counts())
+    
+    print(' ')
+    print("房屋类型    数量")
+    print(haidian['房屋类型'].value_counts())
+    
+    print(' ')
+    print("装修程度    数量")
+    print(haidian['装修程度'].value_counts())
+    
+    print(' ')
+    print("产权性质      数量")
+    print(haidian['产权性质'].value_counts())
+    
+    print("—————————————————————北京二手房信息数据分析————————————————————————")
+    print("—————————————————————海淀区各小区平均房屋单价————————————————————————")
+    data1 = {'所属小区':list(haidian['所属小区']),
+            '房屋单价':list(haidian['房屋单价'])}
+    dataAnalysis_haidian1 = pd.DataFrame(data1)
+    grouped1 = dataAnalysis_haidian1['房屋单价'].groupby(dataAnalysis_haidian1['所属小区'])
+    print((grouped1.mean()))
 
 
  

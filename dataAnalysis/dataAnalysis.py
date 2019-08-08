@@ -33,7 +33,11 @@ def json_to_frame(jsonData):
     
     for i in range(len(jsonData)):
         list_suoshuxiaoqu.append(jsonData.RECORDS[i]['所属小区'])
-        list_fangwuhuxing.append(jsonData.RECORDS[i]['房屋户型'])
+
+        #把无效字符去掉
+        temp4 = jsonData.RECORDS[i]['房屋户型'].replace('\n\t\t\t\t','')
+        t4 = str(temp4)
+        list_fangwuhuxing.append(t4)
         
         #转换成int型
         temp1 = filter(str.isdigit,jsonData.RECORDS[i]['房屋单价'])
@@ -175,7 +179,7 @@ def main():
     for i in pingjun_jianzhumianji_sorted:
         print(i+": "+str(pingjun_jianzhumianji_sorted[i])+"平方米")
         
-    print("———————————————————————————北京各区二手房最贵的二手房———————————————————————————")
+    print("———————————————————————北京各区二手房最贵、最便宜的二手房——————————————————————————")
     i = 0
     max_fangwudanjia = {}
     min_fangwudanjua = {}
@@ -190,5 +194,57 @@ def main():
     for i in max_fangwudanjia_sorted:
         print(i+": "+str(max_fangwudanjia_sorted[i])+"元/平方米"+"     "+str(min_fangwudanjia_sorted[i])+"元/平方米")   
     
+    print("———————————————————————海淀区二手房信息——————————————————————————")
+    print("房屋户型     数量")
+    print(haidian['房屋户型'].value_counts())
+    
+    print(' ')
+    print("建造年代     数量")
+    print(haidian['建造年代'].value_counts())
+    
+    print(' ')
+    print("房屋朝向    数量")
+    print(haidian['房屋朝向'].value_counts())
+    
+    print(' ')
+    print("房屋类型    数量")
+    print(haidian['房屋类型'].value_counts())
+    
+    print(' ')
+    print("装修程度    数量")
+    print(haidian['装修程度'].value_counts())
+    
+    print(' ')
+    print("产权性质      数量")
+    print(haidian['产权性质'].value_counts())
+
+    
+    print("——————————————————北京市在卖二手房配套电梯、配套供暖——————————————————————————") 
+    print(' ')
+    print("配套电梯    数量")
+    print(haidian['配套电梯'].value_counts()+beijingzhoubian['配套电梯'].value_counts()+
+          changping['配套电梯'].value_counts()+chaoyang['配套电梯'].value_counts()+
+          daxing['配套电梯'].value_counts()+dongcheng['配套电梯'].value_counts()+
+          fangshan['配套电梯'].value_counts()+fengtai['配套电梯'].value_counts()+
+          huairou['配套电梯'].value_counts()+mentougou['配套电梯'].value_counts()+
+          miyun['配套电梯'].value_counts()+pinggu['配套电梯'].value_counts()+
+          shijingshan['配套电梯'].value_counts()+shunyi['配套电梯'].value_counts()+
+          tongzhou['配套电梯'].value_counts()+xicheng['配套电梯'].value_counts()+
+          yanqing['配套电梯'].value_counts())
+    
+    print(' ')
+    print("配套供暖    数量")
+    print(haidian['配套供暖'].value_counts()+beijingzhoubian['配套供暖'].value_counts()+
+          changping['配套供暖'].value_counts()+chaoyang['配套供暖'].value_counts()+
+          daxing['配套供暖'].value_counts()+dongcheng['配套供暖'].value_counts()+
+          fangshan['配套供暖'].value_counts()+fengtai['配套供暖'].value_counts()+
+          huairou['配套供暖'].value_counts()+mentougou['配套供暖'].value_counts()+
+          miyun['配套供暖'].value_counts()+pinggu['配套供暖'].value_counts()+
+          shijingshan['配套供暖'].value_counts()+shunyi['配套供暖'].value_counts()+
+          tongzhou['配套供暖'].value_counts()+xicheng['配套供暖'].value_counts()+
+          yanqing['配套供暖'].value_counts())
+
+
+ 
 if __name__ == '__main__':
     main()

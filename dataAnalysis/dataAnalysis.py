@@ -149,6 +149,7 @@ def main():
     '''
     数据可视化:直方图
     '''
+    plt.figure()
     num = []
     for district in all_district:
         num.append(district.shape[0])
@@ -163,6 +164,9 @@ def main():
     plt.title(u'北京各区二手房数量样本',fontsize=10,color='yellow')
     plt.xlabel(u'北京各城区',color='yellow')
     plt.ylabel(u'二手房数目',color='yellow')
+    #显示柱状图中每根柱子的数值
+    for a, b in zip(all_district_name, num):
+        plt.text(a, b, '%d' %b, ha='center', va='bottom', size=4)
     #图片像素
     plt.rcParams['savefig.dpi'] = 1500
     #分辨率
@@ -187,6 +191,7 @@ def main():
     '''
     数据可视化:直方图
     '''
+    plt.figure()
     diqu = []
     fangjia = []
     for i in pingjun_fangwudanjia_sorted:
@@ -203,6 +208,9 @@ def main():
     plt.title(u'北京各区二手房平均单价',fontsize=10,color='yellow')
     plt.xlabel(u'平均房价',color='yellow')
     plt.ylabel(u'北京各地区',color='yellow')
+    #显示柱状图中每根柱子的数值
+    for a, b in zip(diqu, fangjia):
+        plt.text(a, b, '%.2f' %b, ha='center', va='bottom', size=4)
     #图片像素
     plt.rcParams['savefig.dpi'] = 1500
     #分辨率
@@ -247,7 +255,48 @@ def main():
     min_fangwudanjia_sorted = dict(t2)
     for i in max_fangwudanjia_sorted:
         print(i+": "+str(max_fangwudanjia_sorted[i])+"元/平方米"+"     "+str(min_fangwudanjia_sorted[i])+"元/平方米")   
-         
+    
+    '''
+    数据可视化:直方图
+    '''
+    plt.figure()
+    index = np.arange(0,len(all_district_name))
+    maxfangjia = []
+    minfangjia = []
+    for i in max_fangwudanjia_sorted:
+        maxfangjia.append(int(max_fangwudanjia_sorted[i]))
+        minfangjia.append(int(min_fangwudanjia_sorted[i]))   
+    #画直方图
+    bar_width = 0.4
+    plt.bar(index,maxfangjia,color='blue',width=bar_width)
+    plt.bar(index+bar_width,minfangjia,color='green',width=bar_width)
+    #设置x轴的刻度，将构建的xtickslabels代入，同时由于区域比较多，在一块会比较拥挤和重叠，因此设置字体和对齐方式
+    xtickslabels=['东城','海淀','西城','朝阳','丰台','昌平','顺义',
+                        '通州','大兴','石景山','门头沟','房山','怀柔','密云',
+                        '延庆','平谷','北京周边']
+    plt.xticks(index,xtickslabels,size='small',rotation=30)
+    #刻度的字体大小
+    plt.tick_params(labelsize=6)
+    #解决显示中文的问题s
+    plt.rcParams['font.sans-serif']=['SimHei']
+    plt.rcParams['axes.unicode_minus'] = False
+    #设置图标题
+    plt.title(u'北京各区二手房最贵、最便宜的二手房',fontsize=10,color='yellow')
+    plt.xlabel(u'北京各地区',color='yellow')
+    plt.ylabel(u'最贵、最便宜的房价',color='yellow')
+    #显示柱状图中每根柱子的数值
+    for a, b in zip(index, maxfangjia):
+        plt.text(a, b, '%.2f' %b, ha='center', va='bottom', size=4)
+        #显示柱状图中每根柱子的数值
+    for a, b in zip(index, minfangjia):
+        plt.text(a, b, '%.2f' %b, ha='center', va='bottom', size=4)
+    #图片像素
+    plt.rcParams['savefig.dpi'] = 1500
+    #分辨率
+    plt.rcParams['figure.dpi'] = 800  
+    plt.savefig('北京各区二手房最贵、最便宜的二手房.png')
+    plt.show()
+     
     print("——————————————————北京市在卖二手房配套电梯、配套供暖——————————————————————————") 
     print(' ')
     print("配套电梯    数量")

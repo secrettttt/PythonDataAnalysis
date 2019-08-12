@@ -145,6 +145,33 @@ def main():
     for district in all_district:
         print(all_district_name[i]+": "+str(district.shape[0]))
         i+=1
+  
+    '''
+    数据可视化:直方图
+    '''
+    num = []
+    for district in all_district:
+        num.append(district.shape[0])
+    #画直方图
+    plt.bar(all_district_name,num,color='blue')
+    #刻度的字体大小
+    plt.tick_params(labelsize=6)
+    #解决显示中文的问题
+    plt.rcParams['font.sans-serif']=['SimHei']
+    plt.rcParams['axes.unicode_minus'] = False
+    #设置图标题
+    plt.title(u'北京各区二手房数量样本',fontsize=10,color='yellow')
+    plt.xlabel(u'北京各城区',color='yellow')
+    plt.ylabel(u'二手房数目',color='yellow')
+    #图片像素
+    plt.rcParams['savefig.dpi'] = 1500
+    #分辨率
+    plt.rcParams['figure.dpi'] = 800  
+    plt.savefig('北京各区二手房数量样本.png')
+    plt.show()
+    
+    
+    
         
     print("———————————————————————————北京各区二手房平均单价———————————————————————————")
     i = 0
@@ -156,6 +183,33 @@ def main():
     pingjun_fangwudanjia_sorted = dict(t)
     for i in pingjun_fangwudanjia_sorted:
         print(i+": "+str(pingjun_fangwudanjia_sorted[i])+"元/平方米")
+       
+    '''
+    数据可视化:直方图
+    '''
+    diqu = []
+    fangjia = []
+    for i in pingjun_fangwudanjia_sorted:
+        diqu.append(i)
+        fangjia.append(int(pingjun_fangwudanjia_sorted[i]))
+    #画直方图
+    plt.bar(diqu,fangjia,color='blue')
+    #刻度的字体大小
+    plt.tick_params(labelsize=6)
+    #解决显示中文的问题
+    plt.rcParams['font.sans-serif']=['SimHei']
+    plt.rcParams['axes.unicode_minus'] = False
+    #设置图标题
+    plt.title(u'北京各区二手房平均单价',fontsize=10,color='yellow')
+    plt.xlabel(u'平均房价',color='yellow')
+    plt.ylabel(u'北京各地区',color='yellow')
+    #图片像素
+    plt.rcParams['savefig.dpi'] = 1500
+    #分辨率
+    plt.rcParams['figure.dpi'] = 800  
+    plt.savefig('北京各区二手房平均单价.png')
+    plt.show()
+        
         
     print("———————————————————————————北京各区二手房平均参考首付———————————————————————————")
     i = 0
@@ -193,7 +247,7 @@ def main():
     min_fangwudanjia_sorted = dict(t2)
     for i in max_fangwudanjia_sorted:
         print(i+": "+str(max_fangwudanjia_sorted[i])+"元/平方米"+"     "+str(min_fangwudanjia_sorted[i])+"元/平方米")   
-    
+         
     print("——————————————————北京市在卖二手房配套电梯、配套供暖——————————————————————————") 
     print(' ')
     print("配套电梯    数量")
@@ -245,14 +299,77 @@ def main():
     print(haidian['产权性质'].value_counts())
     
     print("—————————————————————北京二手房信息数据分析————————————————————————")
-    print("—————————————————————海淀区各小区平均房屋单价————————————————————————")
+    print("———————————————————————————海淀区各小区平均房价——————————————————————————————")
     data1 = {'所属小区':list(haidian['所属小区']),
             '房屋单价':list(haidian['房屋单价'])}
     dataAnalysis_haidian1 = pd.DataFrame(data1)
     grouped1 = dataAnalysis_haidian1['房屋单价'].groupby(dataAnalysis_haidian1['所属小区'])
-    print((grouped1.mean()))
+    print((grouped1.mean().sort_values(ascending = False).round(1)))
+    #sort_values()方法可以对值进行排序，默认按照升序，round（1）表示小数点后保留1位小数
 
-
+    print("————————————————————————海淀区房屋建造年代与平均房价的关系———————————————————————")
+    data2 = {'建造年代':list(haidian['建造年代']),
+             '房屋单价':list(haidian['房屋单价'])}
+    dataAnalysis_haidian2 = pd.DataFrame(data2)
+    grouped2 = dataAnalysis_haidian2['房屋单价'].groupby(dataAnalysis_haidian2['建造年代'])
+    print(grouped2.mean().sort_values(ascending = False).round(1))
+    
+    print("——————————————————————————海淀区房屋朝向与平均房价的关系———————————————————————")
+    data3 = {'房屋朝向':list(haidian['房屋朝向']),
+             '房屋单价':list(haidian['房屋单价'])}
+    dataAnalysis_haidian3 = pd.DataFrame(data3)
+    grouped3 = dataAnalysis_haidian3['房屋单价'].groupby(dataAnalysis_haidian3['房屋朝向'])
+    print(grouped3.mean().sort_values(ascending = False).round(1))
+    
+    print("——————————————————————————海淀区房屋类型与平均房价的关系———————————————————————")
+    data4 = {'房屋类型':list(haidian['房屋类型']),
+             '房屋单价':list(haidian['房屋单价'])}
+    dataAnalysis_haidian4 = pd.DataFrame(data4)
+    grouped4 = dataAnalysis_haidian4['房屋单价'].groupby(dataAnalysis_haidian4['房屋类型'])
+    print(grouped4.mean().sort_values(ascending = False).round(1))
+    
+    print("——————————————————————————海淀区装修程度与平均房价的关系———————————————————————")
+    data5 = {'装修程度':list(haidian['装修程度']),
+             '房屋单价':list(haidian['房屋单价'])}
+    dataAnalysis_haidian5 = pd.DataFrame(data5)
+    grouped5 = dataAnalysis_haidian5['房屋单价'].groupby(dataAnalysis_haidian5['装修程度'])
+    print(grouped5.mean().sort_values(ascending = False).round(1))
+    
+    print("——————————————————————————海淀区房价与是否配套有电梯的关系———————————————————————")
+    data6 = {'配套电梯':list(haidian['配套电梯']),
+             '房屋单价':list(haidian['房屋单价'])}
+    dataAnalysis_haidian6 = pd.DataFrame(data6)
+    grouped6 = dataAnalysis_haidian6['房屋单价'].groupby(dataAnalysis_haidian6['配套电梯'])
+    print(grouped6.mean().sort_values(ascending = False).round(1))
+    
+    print("——————————————————————————海淀区房价与产权性质的关系———————————————————————")
+    data7 = {'产权性质':list(haidian['产权性质']),
+             '房屋单价':list(haidian['房屋单价'])}
+    dataAnalysis_haidian7 = pd.DataFrame(data7)
+    grouped7 = dataAnalysis_haidian7['房屋单价'].groupby(dataAnalysis_haidian7['产权性质'])
+    print(grouped7.mean().sort_values(ascending = False).round(1))
+    
+    print("——————————————————————————海淀区房价与是否配套有供暖的关系———————————————————————")
+    data8 = {'配套供暖':list(haidian['配套供暖']),
+             '房屋单价':list(haidian['房屋单价'])}
+    dataAnalysis_haidian8 = pd.DataFrame(data8)
+    grouped8 = dataAnalysis_haidian8['房屋单价'].groupby(dataAnalysis_haidian8['配套供暖'])
+    print(grouped8.mean().sort_values(ascending = False).round(1))
+    
+    print("——————————————————————————海淀区房价与是否为一手房源的关系———————————————————————")
+    data9 = {'一手房源':list(haidian['一手房源']),
+             '房屋单价':list(haidian['房屋单价'])}
+    dataAnalysis_haidian9 = pd.DataFrame(data9)
+    grouped9 = dataAnalysis_haidian9['房屋单价'].groupby(dataAnalysis_haidian9['一手房源'])
+    print(grouped9.mean().sort_values(ascending = False).round(1))
+    
+    print("———————————————————————海淀区房价与装修程度、房屋类型的关系———————————————————————")
+    data10 = {'装修程度':list(haidian['装修程度']),
+              '房屋类型':list(haidian['房屋类型']),
+             '房屋单价':list(haidian['房屋单价'])}
+    dataAnalysis_haidian10 = pd.DataFrame(data10)
+    grouped10 = dataAnalysis_haidian10['房屋单价'].groupby([dataAnalysis_haidian10['房屋类型'],dataAnalysis_haidian10['装修程度']])
+    print(grouped10.mean().round(1))
  
 if __name__ == '__main__':
     main()

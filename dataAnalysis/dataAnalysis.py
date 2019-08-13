@@ -363,12 +363,55 @@ def main():
     grouped2 = dataAnalysis_haidian2['房屋单价'].groupby(dataAnalysis_haidian2['建造年代'])
     print(grouped2.mean().sort_values(ascending = False).round(1))
     
+    '''
+    数据可视化：躺着的柱状图
+    '''
+    fig1 = plt.figure()
+    fig1.add_subplot(1,1,1,facecolor='black',alpha=0.3)
+    grouped2.mean().sort_values(ascending = False).round(1).plot(kind='barh',rot=0,fontsize=4)
+    #设置标题、x轴、y轴的标签文本
+    plt.title('海淀区房屋建造年代与平均房价的关系',fontsize = 10,color = 'green')
+    plt.xlabel('平均房价',fontsize = 8,color = 'green')
+    plt.ylabel('建造年代',fontsize = 8,color = 'green')
+    #显示柱状图中每根柱子的数值
+    list1 = grouped2.mean().sort_values(ascending = False)
+    for i in range(len(list1)):
+        plt.text(list1[i],i,str(int(list1[i])),color='yellow',fontsize=4)
+    #图片像素
+    plt.rcParams['savefig.dpi'] = 1500
+    #分辨率
+    plt.rcParams['figure.dpi'] = 800  
+    plt.savefig('海淀区房屋建造年代与平均房价的关系.png')
+    plt.show()
+
+    
     print("——————————————————————————海淀区房屋朝向与平均房价的关系———————————————————————")
     data3 = {'房屋朝向':list(haidian['房屋朝向']),
              '房屋单价':list(haidian['房屋单价'])}
     dataAnalysis_haidian3 = pd.DataFrame(data3)
     grouped3 = dataAnalysis_haidian3['房屋单价'].groupby(dataAnalysis_haidian3['房屋朝向'])
-    print(grouped3.mean().sort_values(ascending = False).round(1))
+    print(grouped3.mean().sort_values(ascending = False).round(1))  
+    
+    '''
+    数据可视化：躺着的柱状图
+    '''
+    fig2 = plt.figure()
+    fig2.add_subplot(1,1,1,facecolor='black',alpha=0.3)
+    grouped3.mean().sort_values(ascending = False).round(1).plot(kind='barh',rot=0,fontsize=8)
+    #设置标题、x轴、y轴的标签文本
+    plt.title('海淀区房屋朝向与平均房价的关系',fontsize = 10,color = 'green')
+    plt.xlabel('平均房价',fontsize = 8,color = 'green')
+    plt.ylabel('房屋朝向',fontsize = 8,color = 'green')
+    #显示柱状图中每根柱子的数值
+    list2 = grouped3.mean().sort_values(ascending = False)
+    for i in range(len(list2)):
+        plt.text(list2[i],i,str(int(list2[i])),color='yellow',fontsize=8)
+    #图片像素
+    plt.rcParams['savefig.dpi'] = 1500
+    #分辨率
+    plt.rcParams['figure.dpi'] = 800  
+    plt.savefig('海淀区房屋朝向与平均房价的关系.png')
+    plt.show()
     
     print("——————————————————————————海淀区房屋类型与平均房价的关系———————————————————————")
     data4 = {'房屋类型':list(haidian['房屋类型']),
@@ -377,12 +420,54 @@ def main():
     grouped4 = dataAnalysis_haidian4['房屋单价'].groupby(dataAnalysis_haidian4['房屋类型'])
     print(grouped4.mean().sort_values(ascending = False).round(1))
     
+    '''
+    数据可视化：躺着的柱状图
+    '''
+    fig3 = plt.figure()
+    fig3.add_subplot(1,1,1,facecolor='black',alpha=0.3)
+    grouped4.mean().sort_values(ascending = False).round(1).plot(kind='barh',rot=0,fontsize=8)
+    #设置标题、x轴、y轴的标签文本
+    plt.title('海淀区房屋类型与平均房价的关系',fontsize = 10,color = 'green')
+    plt.xlabel('平均房价',fontsize = 8,color = 'green')
+    plt.ylabel('房屋类型',fontsize = 8,color = 'green')
+    #显示柱状图中每根柱子的数值
+    list3 = grouped4.mean().sort_values(ascending = False)
+    for i in range(len(list3)):
+        plt.text(list3[i],i,str(int(list3[i])),color='yellow',fontsize=8)
+    #图片像素
+    plt.rcParams['savefig.dpi'] = 1500
+    #分辨率
+    plt.rcParams['figure.dpi'] = 800  
+    plt.savefig('海淀区房屋类型与平均房价的关系.png')
+    plt.show()
+    
     print("——————————————————————————海淀区装修程度与平均房价的关系———————————————————————")
     data5 = {'装修程度':list(haidian['装修程度']),
              '房屋单价':list(haidian['房屋单价'])}
     dataAnalysis_haidian5 = pd.DataFrame(data5)
     grouped5 = dataAnalysis_haidian5['房屋单价'].groupby(dataAnalysis_haidian5['装修程度'])
     print(grouped5.mean().sort_values(ascending = False).round(1))
+    
+    '''
+    数据可视化：躺着的柱状图
+    '''
+    fig4 = plt.figure()
+    fig4.add_subplot(1,1,1,facecolor='black',alpha=0.3)
+    grouped5.mean().sort_values(ascending = False).round(1).plot(kind='barh',rot=0,fontsize=8)
+    #设置标题、x轴、y轴的标签文本
+    plt.title('海淀区装修程度与平均房价的关系',fontsize = 10,color = 'green')
+    plt.xlabel('平均房价',fontsize = 8,color = 'green')
+    plt.ylabel('装修程度',fontsize = 8,color = 'green')
+    #显示柱状图中每根柱子的数值
+    list4 = grouped5.mean().sort_values(ascending = False)
+    for i in range(len(list4)):
+        plt.text(list4[i],i,str(int(list4[i])),color='yellow',fontsize=8)
+    #图片像素
+    plt.rcParams['savefig.dpi'] = 1500
+    #分辨率
+    plt.rcParams['figure.dpi'] = 800  
+    plt.savefig('海淀区装修程度与平均房价的关系.png')
+    plt.show()
     
     print("——————————————————————————海淀区房价与是否配套有电梯的关系———————————————————————")
     data6 = {'配套电梯':list(haidian['配套电梯']),
@@ -391,12 +476,54 @@ def main():
     grouped6 = dataAnalysis_haidian6['房屋单价'].groupby(dataAnalysis_haidian6['配套电梯'])
     print(grouped6.mean().sort_values(ascending = False).round(1))
     
+    '''
+    数据可视化：躺着的柱状图
+    '''
+    fig5 = plt.figure()
+    fig5.add_subplot(1,1,1,facecolor='black',alpha=0.3)
+    grouped6.mean().sort_values(ascending = False).round(1).plot(kind='barh',rot=0,fontsize=8)
+    #设置标题、x轴、y轴的标签文本
+    plt.title('海淀区房价与是否配套有电梯的关系',fontsize = 10,color = 'green')
+    plt.xlabel('平均房价',fontsize = 8,color = 'green')
+    plt.ylabel('配套电梯',fontsize = 8,color = 'green')
+    #显示柱状图中每根柱子的数值
+    list5 = grouped6.mean().sort_values(ascending = False)
+    for i in range(len(list5)):
+        plt.text(list5[i],i,str(int(list5[i])),color='yellow',fontsize=8)
+    #图片像素
+    plt.rcParams['savefig.dpi'] = 1500
+    #分辨率
+    plt.rcParams['figure.dpi'] = 800  
+    plt.savefig('海淀区房价与是否配套有电梯的关系.png')
+    plt.show()
+    
     print("——————————————————————————海淀区房价与产权性质的关系———————————————————————")
     data7 = {'产权性质':list(haidian['产权性质']),
              '房屋单价':list(haidian['房屋单价'])}
     dataAnalysis_haidian7 = pd.DataFrame(data7)
     grouped7 = dataAnalysis_haidian7['房屋单价'].groupby(dataAnalysis_haidian7['产权性质'])
     print(grouped7.mean().sort_values(ascending = False).round(1))
+    
+    '''
+    数据可视化：躺着的柱状图
+    '''
+    fig6 = plt.figure()
+    fig6.add_subplot(1,1,1,facecolor='black',alpha=0.3)
+    grouped7.mean().sort_values(ascending = False).round(1).plot(kind='barh',rot=0,fontsize=8)
+    #设置标题、x轴、y轴的标签文本
+    plt.title('海淀区房价与产权性质的关系',fontsize = 10,color = 'green')
+    plt.xlabel('平均房价',fontsize = 8,color = 'green')
+    plt.ylabel('产权性质',fontsize = 8,color = 'green')
+    #显示柱状图中每根柱子的数值
+    list6 = grouped7.mean().sort_values(ascending = False)
+    for i in range(len(list6)):
+        plt.text(list6[i],i,str(int(list6[i])),color='yellow',fontsize=8)
+    #图片像素
+    plt.rcParams['savefig.dpi'] = 1500
+    #分辨率
+    plt.rcParams['figure.dpi'] = 800  
+    plt.savefig('海淀区房价与产权性质的关系.png')
+    plt.show()
     
     print("——————————————————————————海淀区房价与是否配套有供暖的关系———————————————————————")
     data8 = {'配套供暖':list(haidian['配套供暖']),
@@ -405,12 +532,54 @@ def main():
     grouped8 = dataAnalysis_haidian8['房屋单价'].groupby(dataAnalysis_haidian8['配套供暖'])
     print(grouped8.mean().sort_values(ascending = False).round(1))
     
+    '''
+    数据可视化：躺着的柱状图
+    '''
+    fig7 = plt.figure()
+    fig7.add_subplot(1,1,1,facecolor='black',alpha=0.3)
+    grouped8.mean().sort_values(ascending = False).round(1).plot(kind='barh',rot=0,fontsize=8)
+    #设置标题、x轴、y轴的标签文本
+    plt.title('海淀区房价与是否配套有供暖的关系',fontsize = 10,color = 'green')
+    plt.xlabel('平均房价',fontsize = 8,color = 'green')
+    plt.ylabel('配套供暖',fontsize = 8,color = 'green')
+    #显示柱状图中每根柱子的数值
+    list7 = grouped8.mean().sort_values(ascending = False)
+    for i in range(len(list7)):
+        plt.text(list7[i],i,str(int(list7[i])),color='yellow',fontsize=8)
+    #图片像素
+    plt.rcParams['savefig.dpi'] = 1500
+    #分辨率
+    plt.rcParams['figure.dpi'] = 800  
+    plt.savefig('海淀区房价与是否配套有供暖的关系.png')
+    plt.show()
+    
     print("——————————————————————————海淀区房价与是否为一手房源的关系———————————————————————")
     data9 = {'一手房源':list(haidian['一手房源']),
              '房屋单价':list(haidian['房屋单价'])}
     dataAnalysis_haidian9 = pd.DataFrame(data9)
     grouped9 = dataAnalysis_haidian9['房屋单价'].groupby(dataAnalysis_haidian9['一手房源'])
     print(grouped9.mean().sort_values(ascending = False).round(1))
+    
+    '''
+    数据可视化：躺着的柱状图
+    '''
+    fig8 = plt.figure()
+    fig8.add_subplot(1,1,1,facecolor='black',alpha=0.3)
+    grouped9.mean().sort_values(ascending = False).round(1).plot(kind='barh',rot=0,fontsize=8)
+    #设置标题、x轴、y轴的标签文本
+    plt.title('海淀区房价与是否为一手房源的关系',fontsize = 10,color = 'green')
+    plt.xlabel('平均房价',fontsize = 8,color = 'green')
+    plt.ylabel('一手房源',fontsize = 8,color = 'green')
+    #显示柱状图中每根柱子的数值
+    list8 = grouped9.mean().sort_values(ascending = False)
+    for i in range(len(list8)):
+        plt.text(list8[i],i,str(int(list8[i])),color='yellow',fontsize=8)
+    #图片像素
+    plt.rcParams['savefig.dpi'] = 1500
+    #分辨率
+    plt.rcParams['figure.dpi'] = 800  
+    plt.savefig('海淀区房价与是否为一手房源的关系.png')
+    plt.show()
     
     print("———————————————————————海淀区房价与装修程度、房屋类型的关系———————————————————————")
     data10 = {'装修程度':list(haidian['装修程度']),
